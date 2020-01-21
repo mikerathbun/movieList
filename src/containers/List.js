@@ -11,8 +11,8 @@ class List extends Component {
             loading: true,
         };
     }
-    async conponentDidMount() {
-        const movies = await fetch('../assets/data.json');
+    async componentDidMount() {
+        const movies = await fetch('../../assets/data.json');
         const moviesJSON = await movies.json();
 
         if (moviesJSON) {
@@ -27,8 +27,16 @@ class List extends Component {
         if (loading) {
             return <div>Loading...</div>
         }
-        return data.map(movie => <Card key={ movie.id } movie={movie} />);
-    };
-};
+        return (
+            <div class="row">
+                {data.map(movie => 
+                    <div class='col-sm-2'>
+                        <Card key={ movie.id } movie={movie} />
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
 
 export default List;
